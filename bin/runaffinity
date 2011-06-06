@@ -11,7 +11,7 @@ my $affinity = shift @ARGV;
 
 BSD::Process::Affinity
     ->get_process_mask()
-	->set($affinity))
+	->set($affinity)
 	->update()
 ;
 exec(@ARGV);
