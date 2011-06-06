@@ -15,11 +15,15 @@ test_requires 'Test::More';
 
 requires 'XSLoader';
 requires 'Exporter';
-requires 'Bit::Vector' => 7.0;
 
 install_script 'bin/setaffinity';
 install_script 'bin/runaffinity';
 
 system 'pod2text lib/BSD/Process/Affinity.pod > README';
+
+$| = 1;
+print "*** INCOMPABILITY NOTE ***\n"
+print "*** THIS VERSION IS API_INCOMPATIBLE WITH ANY PREVIOUS RELEASE ***\n";
+sleep 3;
 
 WriteAll;
