@@ -74,7 +74,6 @@ populate_set(struct cpusetinfo *info){
 }
 
 MODULE = BSD::Process::Affinity		PACKAGE = BSD::Process::Affinity
-
 PROTOTYPES: DISABLE
 
 void
@@ -87,7 +86,7 @@ DESTROY(obj)
 SV *
 clone(...)
 	CODE:
-		objnew("BSD::Process::Affinity");
+		objnew("BSD::Process::Affinity::Cpuset");
 
 		if (cpuset(&(info->setid)) != 0){
 			Safefree(info);
@@ -111,7 +110,7 @@ rootof_set(...)
 		current_set = 2
 		current_pid = 3
 	CODE:
-		objnew("BSD::Process::Affinity");
+		objnew("BSD::Process::Affinity::Cpuset");
 
 		if (items > 0){
 			info->id = SvIV(ST(0));
@@ -156,7 +155,7 @@ get_thread_mask(...)
 	ALIAS:
 		get_process_mask = 1
 	CODE:
-		objnew("BSD::Process::Affinity");
+		objnew("BSD::Process::Affinity::Cpuset");
 
 		info->level = CPU_LEVEL_WHICH;
 		info->which = (ix == 0) ? CPU_WHICH_TID : CPU_WHICH_PID;
@@ -174,6 +173,8 @@ get_thread_mask(...)
 		RETVAL = obj_ref;
 	OUTPUT:
 		RETVAL
+
+MODULE = BSD::Process::Affinity     PACKAGE = BSD::Process::Affinity::Cpuset
 
 void
 assign(obj, ...)
