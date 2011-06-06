@@ -263,7 +263,7 @@ set(obj, num)
 			for(i = 0; i < sizeof(UV) * 8; i++){
                 if (input & ((UV)1 << i)){
 					if (i > CPU_SETSIZE){
-						croak("Can't convert number to mask - too many bits set, expecting at most %d set, but already got %d", CPU_SETSIZE, i;
+						croak("Can't convert number to mask - too many bits set, expecting at most %d set, but already got %d", CPU_SETSIZE, i);
 					}
 
 					CPU_SET(i, &(info->mask));
